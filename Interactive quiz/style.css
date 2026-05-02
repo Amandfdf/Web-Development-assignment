@@ -1,0 +1,94 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* App Card */
+.app {
+    background: #fff;
+    width: 400px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 15px;
+}
+
+/* Progress Bar */
+.progress {
+    background: #eee;
+    border-radius: 10px;
+    height: 8px;
+    margin-bottom: 15px;
+}
+
+#progress-bar {
+    height: 8px;
+    width: 0%;
+    background: #667eea;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+/* Question */
+#question {
+    margin-bottom: 15px;
+}
+
+/* Buttons */
+#answer-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn {
+    padding: 10px;
+    margin: 5px 0;
+    border: none;
+    background: #f0f0f0;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #ddd;
+}
+
+.correct {
+    background: #4caf50;
+    color: white;
+}
+
+.wrong {
+    background: #f44336;
+    color: white;
+}
+
+#next-btn {
+    margin-top: 15px;
+    padding: 10px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    display: none;
+}
+
+#next-btn:hover {
+    background: #5a67d8;
+}
