@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Best Solutions — Landing Page</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header id="site-header" class="container">
+    <div class="brand">
+      <h1 class="company-name">Best Solutions</h1>
+      <p class="tagline">Innovating your digital future</p>
+    </div>
+    <nav class="main-nav">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="hero" class="hero container">
+    <div class="hero-content">
+      <h2>We build fast, reliable web experiences</h2>
+      <p>From concept to deployment — design, development, and support tailored to your business.</p>
+      <a class="cta" href="#contact">Get in touch</a>
+    </div>
+  </section>
+
+  <main>
+    <section id="about" class="container section about">
+      <h3>About Us</h3>
+      <p>Best Solutions is a focused team delivering modern web applications and UX-driven products for small and medium businesses.</p>
+    </section>
+
+    <section id="services" class="container section services">
+      <h3>Our Services</h3>
+      <div class="services-grid">
+        <article class="service-card">
+          <h4>Web Development</h4>
+          <p>Responsive websites and single-page applications built with modern frameworks and best practices.</p>
+        </article>
+
+        <article class="service-card">
+          <h4>UI/UX Design</h4>
+          <p>User-centered design, prototypes, and visual systems that improve conversion and engagement.</p>
+        </article>
+
+        <article class="service-card">
+          <h4>Maintenance & Support</h4>
+          <p>Ongoing monitoring, updates, and performance tuning to keep your site secure and fast.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="testimonials" class="container section testimonials">
+      <h3>What our customers say</h3>
+      <div class="testimonials-list">
+        <blockquote class="testimonial">
+          <p class="quote">"Best Solutions delivered our site on time and the performance improvements were immediate."</p>
+          <footer class="cite">— Priya Sharma, CEO</footer>
+        </blockquote>
+
+        <blockquote class="testimonial">
+          <p class="quote">"Great communication and a design that truly reflects our brand."</p>
+          <footer class="cite">— Aman Verma, Product Manager</footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <section id="contact" class="container section contact">
+      <h3>Contact Us</h3>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h4>Reach Us</h4>
+          <p><strong>Name:</strong> Aman Jakhar</p>
+          <p><strong>Email:</strong> <a href="mailto:amanjakhar186@gmail.com">amanjakhar186@gmail.com</a></p>
+          <p><strong>Phone:</strong> <a href="tel:+919304648633">+91 9927481628</a></p>
+          <p><strong>Address:</strong> Dwarka, Delhi, India</p>
+        </div>
+
+        <div class="contact-form-wrapper">
+          <h4>Send a message</h4>
+          <form id="contact-form" class="contact-form" action="#" method="post" novalidate>
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" required placeholder="Your full name" />
+
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required placeholder="you@example.com" />
+
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="tel" required placeholder="+91 9XXXXXXXXX" />
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required placeholder="How can we help?"></textarea>
+
+            <button type="submit" class="btn-submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer" class="container footer">
+    <p class="copyright">© Aman Jakhar 2026. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      alert('Thank you! Your message has been captured (UI only).');
+      this.reset();
+    });
+  </script>
+</body>
+</html>
