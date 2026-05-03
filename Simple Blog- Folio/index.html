@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Folio — A Modern Blog</title>
+
+  <!-- Google Fonts: Playfair Display (display) + DM Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===================== LOADING SCREEN ===================== -->
+  <div id="loader" class="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <span class="loader__logo">Folio</span>
+      <div class="loader__bar"><div class="loader__fill"></div></div>
+    </div>
+  </div>
+
+  <!-- ===================== HEADER / NAVBAR ===================== -->
+  <header class="header" id="header">
+    <nav class="nav container">
+
+      <!-- Logo -->
+      <a href="#home" class="nav__logo" aria-label="Folio home">
+        Folio<span class="nav__logo-dot">.</span>
+      </a>
+
+      <!-- Desktop navigation links -->
+      <ul class="nav__links" id="navLinks" role="list">
+        <li><a href="#home"    class="nav__link active">Home</a></li>
+        <li><a href="#blog"    class="nav__link">Blog</a></li>
+        <li><a href="#about"   class="nav__link">About</a></li>
+        <li><a href="#contact" class="nav__link">Contact</a></li>
+      </ul>
+
+      <!-- Right controls: dark-mode toggle + hamburger -->
+      <div class="nav__controls">
+        <!-- Dark mode toggle -->
+        <button
+          class="btn-icon"
+          id="themeToggle"
+          aria-label="Toggle dark mode"
+          title="Toggle dark mode"
+        >
+          <svg class="icon icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="icon icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+
+        <!-- Hamburger menu (mobile) -->
+        <button
+          class="btn-icon hamburger"
+          id="hamburger"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="navLinks"
+        >
+          <span class="hamburger__line"></span>
+          <span class="hamburger__line"></span>
+          <span class="hamburger__line"></span>
+        </button>
+      </div>
+
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ===================== HERO SECTION ===================== -->
+    <section class="hero" id="home" aria-label="Hero">
+      <div class="hero__bg-text" aria-hidden="true">BLOG</div>
+
+      <div class="container hero__content">
+        <p class="hero__eyebrow reveal">Est. 2025 — Words worth reading</p>
+
+        <h1 class="hero__headline reveal reveal--delay-1">
+          Ideas that<br />
+          <em>move</em> the world.
+        </h1>
+
+        <p class="hero__sub reveal reveal--delay-2">
+          Thoughtful essays on tech, culture, travel, and the art of living well.
+          Curated for curious minds.
+        </p>
+
+        <div class="hero__actions reveal reveal--delay-3">
+          <a href="#blog" class="btn btn--primary">Read Blogs</a>
+          <a href="#about" class="btn btn--ghost">Our Story →</a>
+        </div>
+
+        <!-- Floating stats -->
+        <div class="hero__stats reveal reveal--delay-4">
+          <div class="stat">
+            <span class="stat__number" data-target="128">0</span>
+            <span class="stat__label">Articles</span>
+          </div>
+          <div class="stat__divider"></div>
+          <div class="stat">
+            <span class="stat__number" data-target="48">0</span>
+            <span class="stat__label">Authors</span>
+          </div>
+          <div class="stat__divider"></div>
+          <div class="stat">
+            <span class="stat__number" data-target="94">0</span>
+            <span class="stat__label">K Readers</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Decorative scroll indicator -->
+      <div class="hero__scroll" aria-hidden="true">
+        <span>Scroll</span>
+        <div class="hero__scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ===================== BLOG SECTION ===================== -->
+    <section class="blog-section" id="blog" aria-label="Blog posts">
+      <div class="container">
+
+        <!-- Section header -->
+        <div class="section-header reveal">
+          <p class="section-eyebrow">Latest Stories</p>
+          <h2 class="section-title">The <em>Journal</em></h2>
+        </div>
+
+        <!-- Search + Category filters -->
+        <div class="blog-controls reveal">
+
+          <!-- Search bar -->
+          <div class="search-wrap">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input
+              type="search"
+              id="searchInput"
+              class="search-input"
+              placeholder="Search articles…"
+              aria-label="Search blog posts"
+            />
+            <button class="search-clear" id="searchClear" aria-label="Clear search" hidden>✕</button>
+          </div>
+
+          <!-- Category buttons -->
+          <div class="categories" role="group" aria-label="Filter by category" id="categoryGroup">
+            <button class="category-btn active" data-category="all">All</button>
+            <button class="category-btn" data-category="Tech">Tech</button>
+            <button class="category-btn" data-category="Lifestyle">Lifestyle</button>
+            <button class="category-btn" data-category="Travel">Travel</button>
+            <button class="category-btn" data-category="Design">Design</button>
+          </div>
+
+        </div>
+
+        <!-- Blog grid — populated by JS -->
+        <div class="blog-grid" id="blogGrid" aria-live="polite" aria-label="Blog posts grid"></div>
+
+        <!-- Empty state -->
+        <div class="empty-state" id="emptyState" hidden aria-live="polite">
+          <div class="empty-state__icon">🔍</div>
+          <h3>No posts found</h3>
+          <p>Try a different search term or category.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT SECTION ===================== -->
+    <section class="about-section" id="about" aria-label="About Folio">
+      <div class="container about-grid">
+
+        <div class="about-image reveal">
+          <div class="about-image__frame">
+            <img
+              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80"
+              alt="Our team collaborating around a table"
+              loading="lazy"
+            />
+            <div class="about-image__tag">Since 2025</div>
+          </div>
+        </div>
+
+        <div class="about-content reveal reveal--delay-1">
+          <p class="section-eyebrow">About Us</p>
+          <h2 class="section-title">We write about<br /><em>what matters.</em></h2>
+
+          <p class="about-content__lead">
+            Folio was born from a simple belief: great writing changes how people see the world.
+          </p>
+
+          <p class="about-content__body">
+            We're a community of independent writers, designers, and thinkers who care deeply
+            about craft. Every piece published here is edited, fact-checked, and written to last —
+            not to go viral. We cover technology without the hype, travel without the clichés,
+            and lifestyle without the pretension.
+          </p>
+
+          <ul class="about-values" role="list">
+            <li class="about-value">
+              <span class="about-value__icon">✦</span>
+              <span>Honest, long-form writing</span>
+            </li>
+            <li class="about-value">
+              <span class="about-value__icon">✦</span>
+              <span>No ads, no sponsored content</span>
+            </li>
+            <li class="about-value">
+              <span class="about-value__icon">✦</span>
+              <span>Reader-first, always</span>
+            </li>
+          </ul>
+
+          <a href="#blog" class="btn btn--primary">Explore Articles</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT SECTION ===================== -->
+    <section class="contact-section" id="contact" aria-label="Contact us">
+      <div class="container contact-grid">
+
+        <div class="contact-info reveal">
+          <p class="section-eyebrow">Get in Touch</p>
+          <h2 class="section-title">Let's<br /><em>talk.</em></h2>
+          <p class="contact-info__body">
+            Have a story pitch, collaboration idea, or just want to say hello?
+            We read every message.
+          </p>
+          <address class="contact-details">
+            <div class="contact-detail">
+              <span class="contact-detail__label">Email</span>
+              <a href="mailto:hello@folio.blog" class="contact-detail__value">hello@folio.blog</a>
+            </div>
+            <div class="contact-detail">
+              <span class="contact-detail__label">Based in</span>
+              <span class="contact-detail__value">New Delhi, India</span>
+            </div>
+          </address>
+        </div>
+
+        <div class="contact-form-wrap reveal reveal--delay-1">
+          <!-- Contact form -->
+          <form class="contact-form" id="contactForm" novalidate>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contactName" class="form-label">Name</label>
+                <input
+                  type="text"
+                  id="contactName"
+                  name="name"
+                  class="form-input"
+                  placeholder="Your full name"
+                  autocomplete="name"
+                />
+                <span class="form-error" id="nameError" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="contactEmail" class="form-label">Email</label>
+                <input
+                  type="email"
+                  id="contactEmail"
+                  name="email"
+                  class="form-input"
+                  placeholder="your@email.com"
+                  autocomplete="email"
+                />
+                <span class="form-error" id="emailError" role="alert"></span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="contactMessage" class="form-label">Message</label>
+              <textarea
+                id="contactMessage"
+                name="message"
+                class="form-input form-textarea"
+                placeholder="Tell us what's on your mind…"
+                rows="5"
+              ></textarea>
+              <span class="form-error" id="messageError" role="alert"></span>
+            </div>
+
+            <button type="submit" class="btn btn--primary btn--full">
+              Send Message
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn__icon">
+                <line x1="22" y1="2" x2="11" y2="13"/>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+            </button>
+
+            <!-- Success message -->
+            <div class="form-success" id="formSuccess" hidden role="status">
+              🎉 Message sent! We'll get back to you within 24 hours.
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+
+      <div class="footer-brand">
+        <a href="#home" class="nav__logo" aria-label="Folio home">
+          Folio<span class="nav__logo-dot">.</span>
+        </a>
+        <p class="footer-brand__tagline">Words worth reading.</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="#home">Home</a>
+        <a href="#blog">Blog</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <!-- Social media links -->
+      <div class="footer-social" aria-label="Social media links">
+        <a href="#" class="social-link" aria-label="Twitter / X">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.632 5.905-5.632Zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+        <a href="#" class="social-link" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="5"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+        <a href="#" class="social-link" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+        </a>
+        <a href="#" class="social-link" aria-label="RSS Feed">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 11a9 9 0 0 1 9 9"/>
+            <path d="M4 4a16 16 0 0 1 16 16"/>
+            <circle cx="5" cy="19" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom container">
+      <p>© <span id="footerYear"></span> Folio Blog. Crafted with care.</p>
+      <p>Privacy Policy · Terms of Use</p>
+    </div>
+  </footer>
+
+  <!-- Back-to-top button -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top" hidden>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <polyline points="18 15 12 9 6 15"/>
+    </svg>
+  </button>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
