@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FakeChat Studio — Chat Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       TOP NAV BAR
+  ════════════════════════════════════════════ -->
+  <nav class="top-nav">
+    <div class="nav-brand">
+      <span class="brand-icon">💬</span>
+      <span class="brand-name">FakeChat <em>Studio</em></span>
+    </div>
+    <div class="nav-actions">
+      <button class="btn-icon" id="btn-theme-toggle" title="Toggle Theme" aria-label="Toggle dark/light mode">
+        <span class="icon-sun">☀️</span>
+        <span class="icon-moon">🌙</span>
+      </button>
+      <button class="btn-icon" id="btn-save" title="Save Chat" aria-label="Save chat to local storage">💾</button>
+      <button class="btn-icon" id="btn-load" title="Load Saved Chats" aria-label="Load saved chats">📂</button>
+      <button class="btn-primary" id="btn-export">📸 Export Image</button>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       MAIN LAYOUT
+  ════════════════════════════════════════════ -->
+  <main class="app-layout">
+
+    <!-- LEFT PANEL: Controls -->
+    <aside class="panel panel-left" id="control-panel">
+      <div class="panel-inner">
+
+        <!-- TABS -->
+        <div class="tab-bar" role="tablist">
+          <button class="tab-btn active" data-tab="compose" role="tab" aria-selected="true">✏️ Compose</button>
+          <button class="tab-btn" data-tab="customize" role="tab" aria-selected="false">🎨 Style</button>
+          <button class="tab-btn" data-tab="templates" role="tab" aria-selected="false">⚡ Templates</button>
+        </div>
+
+        <!-- TAB: COMPOSE -->
+        <div class="tab-pane active" id="tab-compose">
+
+          <!-- Sender Profile -->
+          <section class="control-section">
+            <h3 class="section-title">Contact Info</h3>
+            <div class="profile-editor">
+              <div class="avatar-uploader" id="avatar-uploader" title="Click to upload photo">
+                <img src="" alt="Profile" class="avatar-preview" id="avatar-preview" />
+                <div class="avatar-placeholder" id="avatar-placeholder">
+                  <span>👤</span>
+                  <small>Upload</small>
+                </div>
+                <input type="file" id="avatar-input" accept="image/*" hidden />
+              </div>
+              <div class="profile-fields">
+                <input type="text" class="form-input" id="contact-name" placeholder="Contact name…" value="Alex Johnson" maxlength="30" />
+                <input type="text" class="form-input" id="contact-status" placeholder="Status / subtitle…" value="online" maxlength="40" />
+              </div>
+            </div>
+          </section>
+
+          <!-- Message Composer -->
+          <section class="control-section">
+            <h3 class="section-title">New Message</h3>
+            <div class="message-type-toggle">
+              <button class="type-btn active" data-type="received" id="btn-received">⬅ Received</button>
+              <button class="type-btn" data-type="sent" id="btn-sent">Sent ➡</button>
+            </div>
+            <div class="textarea-wrap">
+              <textarea class="form-textarea" id="message-input" placeholder="Type your message…" rows="3" maxlength="500"></textarea>
+              <button class="emoji-toggle-btn" id="emoji-toggle" title="Emoji picker" type="button">😊</button>
+            </div>
+            <!-- Emoji Picker -->
+            <div class="emoji-picker" id="emoji-picker" hidden>
+              <div class="emoji-grid" id="emoji-grid"></div>
+            </div>
+            <div class="compose-meta">
+              <div class="meta-row">
+                <label class="meta-label">Time</label>
+                <input type="time" class="form-input form-input--sm" id="msg-time" />
+              </div>
+              <div class="meta-row">
+                <label class="meta-label">Read receipt</label>
+                <select class="form-input form-input--sm" id="msg-receipt">
+                  <option value="none">None</option>
+                  <option value="sent">✔ Sent</option>
+                  <option value="delivered">✔✔ Delivered</option>
+                  <option value="read" selected>✔✔ Read</option>
+                </select>
+              </div>
+              <div class="meta-row">
+                <label class="meta-label">Typing…</label>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="show-typing" />
+                  <span class="toggle-track"></span>
+                </label>
+              </div>
+            </div>
+            <button class="btn-add-message" id="btn-add-message">＋ Add Message</button>
+          </section>
+
+          <!-- Messages List -->
+          <section class="control-section">
+            <h3 class="section-title">
+              Messages
+              <button class="btn-clear-all" id="btn-clear-all" title="Clear all messages">🗑 Clear All</button>
+            </h3>
+            <div class="messages-list" id="messages-list">
+              <div class="empty-list-hint" id="empty-list-hint">No messages yet. Add one above ↑</div>
+            </div>
+          </section>
+        </div>
+
+        <!-- TAB: CUSTOMIZE -->
+        <div class="tab-pane" id="tab-customize">
+
+          <section class="control-section">
+            <h3 class="section-title">Background</h3>
+            <div class="bg-swatches" id="bg-swatches"></div>
+            <label class="form-label" for="bg-custom-color">Custom Color</label>
+            <input type="color" class="color-picker" id="bg-custom-color" value="#e5ddd5" />
+          </section>
+
+          <section class="control-section">
+            <h3 class="section-title">Bubble Colors</h3>
+            <div class="color-pair">
+              <div>
+                <label class="form-label">Sent</label>
+                <input type="color" class="color-picker" id="sent-color" value="#dcf8c6" />
+              </div>
+              <div>
+                <label class="form-label">Received</label>
+                <input type="color" class="color-picker" id="recv-color" value="#ffffff" />
+              </div>
+            </div>
+          </section>
+
+          <section class="control-section">
+            <h3 class="section-title">Chat Style</h3>
+            <div class="style-options" id="style-options">
+              <button class="style-btn active" data-style="whatsapp">WhatsApp</button>
+              <button class="style-btn" data-style="instagram">Instagram</button>
+              <button class="style-btn" data-style="messenger">Messenger</button>
+              <button class="style-btn" data-style="imessage">iMessage</button>
+            </div>
+          </section>
+
+          <section class="control-section">
+            <h3 class="section-title">Status Bar</h3>
+            <div class="meta-row">
+              <label class="meta-label">Custom Time</label>
+              <input type="text" class="form-input form-input--sm" id="status-time" placeholder="9:41" maxlength="5" />
+            </div>
+            <div class="meta-row">
+              <label class="meta-label">Battery %</label>
+              <input type="number" class="form-input form-input--sm" id="battery-level" placeholder="100" min="0" max="100" value="87" />
+            </div>
+          </section>
+
+          <section class="control-section">
+            <h3 class="section-title">Your Name</h3>
+            <input type="text" class="form-input" id="my-name" placeholder="Your display name…" value="You" maxlength="20" />
+          </section>
+
+        </div>
+
+        <!-- TAB: TEMPLATES -->
+        <div class="tab-pane" id="tab-templates">
+          <section class="control-section">
+            <h3 class="section-title">Quick Scenarios</h3>
+            <p class="section-desc">Load a pre-built chat scenario instantly.</p>
+            <div class="template-grid" id="template-grid"></div>
+          </section>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- RIGHT PANEL: Preview -->
+    <section class="panel panel-right" id="preview-panel">
+      <div class="preview-label">Live Preview</div>
+
+      <!-- Phone Frame -->
+      <div class="phone-frame" id="phone-frame">
+
+        <!-- Status Bar -->
+        <div class="status-bar" id="status-bar">
+          <span class="status-time" id="sb-time">9:41</span>
+          <div class="status-icons">
+            <span class="signal-bars" id="sb-signal">
+              <span></span><span></span><span></span><span></span>
+            </span>
+            <span class="wifi-icon">🛜</span>
+            <span class="battery-icon">
+              <span class="battery-bar" id="battery-bar"></span>
+              <span class="battery-tip"></span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Chat Header -->
+        <div class="chat-header" id="chat-header">
+          <button class="back-btn" aria-label="Back">‹</button>
+          <div class="chat-header-avatar">
+            <img src="" alt="" id="header-avatar" />
+            <div class="header-avatar-placeholder" id="header-avatar-placeholder">👤</div>
+            <span class="online-dot" id="online-dot"></span>
+          </div>
+          <div class="chat-header-info">
+            <span class="chat-header-name" id="header-name">Alex Johnson</span>
+            <span class="chat-header-status" id="header-status">online</span>
+          </div>
+          <div class="header-actions">
+            <button class="hdr-btn" aria-label="Video call">📹</button>
+            <button class="hdr-btn" aria-label="Call">📞</button>
+            <button class="hdr-btn" aria-label="More">⋮</button>
+          </div>
+        </div>
+
+        <!-- Messages Area -->
+        <div class="chat-messages" id="chat-messages">
+          <div class="date-divider"><span>Today</span></div>
+          <!-- Messages injected by JS -->
+        </div>
+
+        <!-- Typing Indicator -->
+        <div class="typing-indicator" id="typing-indicator" hidden>
+          <div class="typing-bubble">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+
+        <!-- Input Bar (decorative) -->
+        <div class="chat-input-bar">
+          <button class="input-emoji-btn" aria-label="Emoji">😊</button>
+          <div class="input-field-fake">Message</div>
+          <button class="input-attach-btn" aria-label="Attach">📎</button>
+          <button class="input-mic-btn" aria-label="Voice message">🎤</button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════
+       MODAL: Edit Message
+  ════════════════════════════════════════════ -->
+  <div class="modal-overlay" id="modal-edit" hidden role="dialog" aria-modal="true" aria-labelledby="modal-edit-title">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="modal-edit-title">Edit Message</h2>
+        <button class="modal-close" id="modal-edit-close" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <textarea class="form-textarea" id="edit-textarea" rows="4"></textarea>
+        <div class="meta-row">
+          <label class="meta-label">Time</label>
+          <input type="time" class="form-input form-input--sm" id="edit-time" />
+        </div>
+        <div class="meta-row">
+          <label class="meta-label">Read receipt</label>
+          <select class="form-input form-input--sm" id="edit-receipt">
+            <option value="none">None</option>
+            <option value="sent">✔ Sent</option>
+            <option value="delivered">✔✔ Delivered</option>
+            <option value="read">✔✔ Read</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" id="modal-edit-cancel">Cancel</button>
+        <button class="btn-primary" id="modal-edit-save">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       MODAL: Load Saved Chats
+  ════════════════════════════════════════════ -->
+  <div class="modal-overlay" id="modal-load" hidden role="dialog" aria-modal="true" aria-labelledby="modal-load-title">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="modal-load-title">Saved Chats</h2>
+        <button class="modal-close" id="modal-load-close" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="saved-chats-list" id="saved-chats-list">
+          <p class="empty-saved">No saved chats found.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       TOAST NOTIFICATIONS
+  ════════════════════════════════════════════ -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
